@@ -18,7 +18,6 @@ const staticFiles = [
   '/manifest.json',
   '/service-worker.js',
   '/favicon.ico',
-  '/logo.svg'
 ];
 
 staticFiles.forEach(file => {
@@ -31,7 +30,7 @@ staticFiles.forEach(file => {
 app.get('*', async (req, res) => {
   const html = path.join(__dirname, '../build/index.html');
   const htmlData = fs.readFileSync(html).toString();
-
+  
   const ReactApp = ReactDOMServer.renderToString(React.createElement(App));
   const renderedHtml = htmlData.replace(
     '<div id="root"></div>',
