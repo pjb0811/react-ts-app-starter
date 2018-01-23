@@ -3,10 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as express from 'express';
 
-import * as React from 'react';
-import * as ReactDOMServer from 'react-dom/server';
-
-import App from './App';
+import App from './server/render';
 
 const app = express();
 
@@ -30,11 +27,10 @@ staticFiles.forEach(file => {
 app.get('*', async (req, res) => {
   const html = path.join(__dirname, '../build/index.html');
   const htmlData = fs.readFileSync(html).toString();
-  
-  const ReactApp = ReactDOMServer.renderToString(React.createElement(App));
+  const rendered = App(req.url);
   const renderedHtml = htmlData.replace(
     '<div id="root"></div>',
-    `<div id="root">${ReactApp}</div>`
+    `<div id="root">${rendered}</div>`
   );
   res.status(200).send(renderedHtml);
 });

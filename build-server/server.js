@@ -12,9 +12,7 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 const express = require("express");
-const React = require("react");
-const ReactDOMServer = require("react-dom/server");
-const App_1 = require("./App");
+const render_1 = require("./server/render");
 const app = express();
 const server = http.createServer(app);
 const staticFiles = [
@@ -23,7 +21,6 @@ const staticFiles = [
     '/manifest.json',
     '/service-worker.js',
     '/favicon.ico',
-    '/logo.svg'
 ];
 staticFiles.forEach(file => {
     app.get(file, (req, res) => {
@@ -34,8 +31,8 @@ staticFiles.forEach(file => {
 app.get('*', (req, res) => __awaiter(this, void 0, void 0, function* () {
     const html = path.join(__dirname, '../build/index.html');
     const htmlData = fs.readFileSync(html).toString();
-    const ReactApp = ReactDOMServer.renderToString(React.createElement(App_1.default));
-    const renderedHtml = htmlData.replace('<div id="root"></div>', `<div id="root">${ReactApp}</div>`);
+    const rendered = render_1.default(req.url);
+    const renderedHtml = htmlData.replace('<div id="root"></div>', `<div id="root">${rendered}</div>`);
     res.status(200).send(renderedHtml);
 }));
 server.listen(3000);
