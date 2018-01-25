@@ -2,7 +2,7 @@ import { INCREMENT, DECREMENT, SET_DIFF } from '../actions';
 import { combineReducers } from 'redux';
 
 const counterInitialState = {
-  value: 100,
+  value: 1,
   diff: 1
 };
 
