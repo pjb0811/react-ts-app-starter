@@ -16,11 +16,7 @@ class App extends React.Component {
           <Menu/>
           <Route exact={true} path="/" component={Home}/>
           <Route path="/test" component={Test}/>
-          <Counter/>
-          {/*
-          <Option/>
-          <Buttons/>
-          */}
+          <Route path="/counter" component={Counter}/>
         </div>
       </div>
     );
