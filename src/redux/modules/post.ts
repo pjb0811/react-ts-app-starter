@@ -25,21 +25,6 @@ const initialState = Map({
   })
 });
 
-/*
-interface Action<P> {
-  type: string;
-  payload?: P;
-  error?: boolean;
-}
-
-type Payload = {
-  data: {
-    title: string;
-    body: string;
-  }
-};
-*/
-
 export default handleActions(
   {
     [GET_POST_PENDING]: (state, action) => {
@@ -48,7 +33,7 @@ export default handleActions(
 
     [GET_POST_SUCCESS]: (state, action: any) => {
       const { title, body } = action.payload.data;
-      return state.set('pending', false)
+      return state.set('pending', false).set('error', false)
         .setIn(['data', 'title'], title).setIn(['data', 'body'], body);
     },
     [GET_POST_FAILURE]: (state, action) => {

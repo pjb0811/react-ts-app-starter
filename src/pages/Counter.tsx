@@ -23,7 +23,7 @@ type Post = {
     title: string;
     body: string;
   };
-  get: Function;
+  toJS: Function;
 };
 
 class Counter extends React.Component<Props> {
@@ -53,20 +53,20 @@ class Counter extends React.Component<Props> {
 
   render() {
     const { post, counter, CounterActions } = this.props;
-    const data = post.get('data').toJS();
+    const result = post.toJS();
 
     return (
       <div>
       <h1>{counter}</h1>
       <button onClick={CounterActions.increment}>+</button>
       <button onClick={CounterActions.decrement}>-</button>
-      {post.pending && <h2>로딩중...</h2>}
-      { post.error
+      {result.pending && <h2>로딩중...</h2>}
+      { result.error
           ? <h1>에러발생!</h1>
           : (
               <div>
-                  <h1>{data.title}</h1>
-                  <p>{data.body}</p>
+                  <h1>{result.data.title}</h1>
+                  <p>{result.data.body}</p>
               </div>
           )}
       </div>
