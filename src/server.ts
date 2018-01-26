@@ -29,7 +29,7 @@ app.get('*', async (req, res) => {
   const template = path.join(__dirname, '../build/index.html');
   const htmlData = fs.readFileSync(template).toString();
   const rendered = App(req.url);
-  const { html, helmet, state } = rendered;
+  const { html, helmet, state } = await rendered;
   const renderedHtml = htmlData
     .replace(
       '<div id="root"></div>',

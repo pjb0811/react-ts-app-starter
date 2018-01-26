@@ -6,11 +6,11 @@ import { Provider } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import store from '../redux/store';
 
-const render = (location: string) => {
+const render = async (location: string) => {
   const helmet = Helmet.renderStatic();
   const context = {};
 
-  const html = ReactDOMServer.renderToString(
+  const html = await ReactDOMServer.renderToString(
     <StaticRouter location={location} context={context}>
       <Provider store={store}>
         <App/>
