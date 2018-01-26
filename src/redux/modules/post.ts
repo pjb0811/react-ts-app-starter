@@ -5,10 +5,17 @@ function getPostAPI(postId: number) {
   return axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}`);
 }
 
+const GET_POST = 'GET_POST';
 const GET_POST_PENDING = 'GET_POST_PENDING';
 const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
 const GET_POST_FAILURE = 'GET_POST_FAILURE';
 
+export const getPost = (postId: number) => ({
+    type: GET_POST,
+    payload: getPostAPI(postId)
+});
+
+/*
 export const getPost = (postId: number) => (dispatch: Function) => {
   dispatch({type: GET_POST_PENDING});
 
@@ -27,6 +34,7 @@ export const getPost = (postId: number) => (dispatch: Function) => {
       });
   });
 };
+*/
 
 const initialState = {
   pending: false,
