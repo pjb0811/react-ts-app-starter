@@ -22,11 +22,12 @@ type Post = {
   data: {
     title: string;
     body: string;
-  }
+  };
+  get: Function;
 };
 
 class Counter extends React.Component<Props> {
-  componentDidMount() {
+  componentWillMount() {
     // 컴포넌트가 처음 마운트 될 때 현재 number 를 postId 로 사용하여 포스트 내용을 불러옵니다.
     const { counter } = this.props;
     this.getPost(counter);
@@ -52,6 +53,8 @@ class Counter extends React.Component<Props> {
 
   render() {
     const { post, counter, CounterActions } = this.props;
+    const data = post.get('data').toJS();
+
     return (
       <div>
       <h1>{counter}</h1>
@@ -62,8 +65,8 @@ class Counter extends React.Component<Props> {
           ? <h1>에러발생!</h1>
           : (
               <div>
-                  <h1>{post.data.title}</h1>
-                  <p>{post.data.body}</p>
+                  <h1>{data.title}</h1>
+                  <p>{data.body}</p>
               </div>
           )}
       </div>

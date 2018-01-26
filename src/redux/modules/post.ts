@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
 import axios from 'axios';
+import { Map } from 'immutable';
 
 function getPostAPI(postId: number) {
   return axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}`);
@@ -15,36 +16,16 @@ export const getPost = (postId: number) => ({
     payload: getPostAPI(postId)
 });
 
-/*
-export const getPost = (postId: number) => (dispatch: Function) => {
-  dispatch({type: GET_POST_PENDING});
-
-  return getPostAPI(postId).then(
-    (response) => {
-      dispatch({
-        type: GET_POST_SUCCESS,
-        payload: response
-      });
-    }
-  ).catch(
-    (error) => {
-      dispatch({
-        type: GET_POST_FAILURE,
-        payload: error
-      });
-  });
-};
-*/
-
-const initialState = {
+const initialState = Map({
   pending: false,
   error: false,
-  data: {
+  data: Map({
     title: '',
     body: ''
-  }
-};
+  })
+});
 
+/*
 interface Action<P> {
   type: string;
   payload?: P;
@@ -57,38 +38,21 @@ type Payload = {
     body: string;
   }
 };
+*/
 
 export default handleActions(
   {
     [GET_POST_PENDING]: (state, action) => {
-      return {
-        ...state,
-        pending: true,
-        error: false
-      };
+      return state.set('pending', true).set('error', false);
     },
-    [GET_POST_SUCCESS]: (state, action: Action<Payload>) => {
-      const { payload } = action;
-      if (payload) {
-        const { title, body } = payload.data;
-        return {
-          ...state,
-          pending: false,
-          data: {
-            title, body
-          }
-        };
-      }
-      return {
-        ...state
-      };
+
+    [GET_POST_SUCCESS]: (state, action: any) => {
+      const { title, body } = action.payload.data;
+      return state.set('pending', false)
+        .setIn(['data', 'title'], title).setIn(['data', 'body'], body);
     },
     [GET_POST_FAILURE]: (state, action) => {
-      return {
-        ...state,
-        pending: false,
-        error: true
-      };
+      return state.set('pending', false).set('error', true);
     }
   },
   initialState
