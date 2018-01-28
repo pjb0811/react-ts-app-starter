@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Route } from 'react-router-dom';
 import { Home, Test, Counter } from './pages';
 import Menu from './components/Menu';
-import { hot } from 'react-hot-loader';
 import { Helmet } from 'react-helmet';
 
 interface Props {}
@@ -20,7 +19,6 @@ class App extends React.Component<Props, State> {
   }
 
   render() {
-    console.log(this.state.test);
     return (
       <div className="App">
         <Helmet>
@@ -28,6 +26,7 @@ class App extends React.Component<Props, State> {
         </Helmet>
         <div>
           <Menu/>
+          <h2>{this.state.test}</h2>
           <Route exact={true} path="/" component={Home}/>
           <Route path="/test" component={Test}/>
           <Route path="/counter" component={Counter}/>
@@ -37,4 +36,4 @@ class App extends React.Component<Props, State> {
   }
 }
 
-export default hot(module)(App);
+export default App;
