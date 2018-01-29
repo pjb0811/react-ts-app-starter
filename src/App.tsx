@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import { Home, About, Counter } from './components/pages';
 import Menu from './components/Menu';
 import { Helmet } from 'react-helmet';
-import 'App.css';
 
 interface Props {}
 
