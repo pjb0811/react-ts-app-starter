@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
-import { Home, Test, Counter } from './pages';
+import { Home, About, Counter } from './components/pages';
 import Menu from './components/Menu';
 import { Helmet } from 'react-helmet';
+import 'App.css';
 
 interface Props {}
 
@@ -26,9 +27,8 @@ class App extends React.Component<Props, State> {
         </Helmet>
         <div>
           <Menu/>
-          <h2>{this.state.test}</h2>
           <Route exact={true} path="/" component={Home}/>
-          <Route path="/test" component={Test}/>
+          <Route path="/about" component={About}/>
           <Route path="/counter" component={Counter}/>
         </div>
       </div>
