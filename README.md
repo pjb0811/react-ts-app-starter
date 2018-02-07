@@ -12,4 +12,4 @@ This app is for configuring the initial environment when starting the React + Ty
 + semantic-ui
 + react-helmet
 + react-hot-loader
-+ server side rendering
++ express(for SSR)
