@@ -22,7 +22,7 @@ class App extends React.Component<Props, State> {
     return (
       <div className="App">
         <Helmet>
-          <title>React App Starter</title>
+          <title>React + TypeScript App Starter</title>
         </Helmet>
         <div>
           <Menu/>
