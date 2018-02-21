@@ -5,6 +5,8 @@ import Loading from './Loading';
 const loadableComponent = (component: string) => {
   return Loadable({
     loader: () => import(`${component}`),
+    modules: [component],
+    webpack: () => [(require as any).resolveWeak(`${component}`)],
     loading() {
       return <Loading/>;
     }
