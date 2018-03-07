@@ -15,20 +15,17 @@ OS 환경에 맞는 [nodejs](https://nodejs.org/ko/) 설치가 필요합니다.
     - redux-thunk
     - redux-logger
     - redux-promise-middleware
-    - immutable
-  - react-helmet
   - react-hot-loader@v4
   - react-loadable
 
 - **Typescript**
   - typescript
-  - tslint
 
 - **CSS Framework**
   - semantic-ui-css
   - semantic-ui-react
 
-- **Server Side Rendering(for web app)**
+- **Server Side Rendering**
   - express
 
 - **Module Loader/bundler**
