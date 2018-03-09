@@ -26,7 +26,7 @@ type Post = {
   toJS: Function;
 };
 
-class Counter extends React.Component<Props> {
+class ReduxExample extends React.Component<Props> {
   componentWillMount() {
     const { counter } = this.props;
     this.getPost(counter);
@@ -82,4 +82,4 @@ export default connect(
     CounterActions: bindActionCreators(counterActions, dispatch),
     PostActions: bindActionCreators(postActions, dispatch)
   })
-)(Counter);
+)(ReduxExample);

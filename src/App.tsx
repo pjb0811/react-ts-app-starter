@@ -1,21 +1,16 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
-import { Home, About, Counter } from './components/pages';
+import {
+  Home, About, ReduxExample, MobxExample
+} from './components/pages';
 import Menu from './components/Menu';
 import { Helmet } from 'react-helmet';
 
 interface Props {}
 
-interface State {
-  test: string;
-}
-
-class App extends React.Component<Props, State> {
+class App extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      test: 'test'
-    };
   }
 
   render() {
@@ -28,7 +23,8 @@ class App extends React.Component<Props, State> {
           <Menu/>
           <Route exact={true} path="/" component={Home}/>
           <Route path="/about" component={About}/>
-          <Route path="/counter" component={Counter}/>
+          <Route path="/reduxExample" component={ReduxExample}/>
+          <Route path="/mobxExample" component={MobxExample}/>
         </div>
       </div>
     );
