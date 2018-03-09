@@ -11,13 +11,15 @@ You need to install [nodejs](https://nodejs.org/) for your OS environment.
   - react-helmet
   - react-hot-loader@v4
   - react-loadable
-- **redux**
+- **Redux**
   - react-redux
   - redux-actions
   - redux-thunk
   - redux-logger
   - redux-promise-middleware
   - immutable
+- **MobX**
+  - mobx-react
 - **Typescript**
 - **CSS Framework**
   - semantic-ui-css
@@ -47,6 +49,47 @@ You need to install [nodejs](https://nodejs.org/) for your OS environment.
 ```
   npm run serve
 ```
+### Change the state management library(MobX <-> Redux)
+#### src/client/Root.tsx
+```
+// redux
+...
+import { Provider  } from 'react-redux';
+import store from '../redux/store';
+
+// mobx
+import { Provider } from 'mobx-react';
+import Store from '../mobx/Store';
+const store = new Store();
+...
+...
+```
+#### src/server/render.tsx
+```
+// redux
+import { Provider } from 'react-redux';
+import store from '../redux/store';
+
+// mobx
+import { toJS } from 'mobx';
+import { Provider } from 'mobx-react';
+import Store from '../mobx/Store';
+const store = new Store()
+...
+...
+const render = async (location: string) => {
+  ....
+  return {
+    html,
+    // redux
+    state: store.getState(),
+    // mobx
+    state: toJS(store),
+    helmet,
+  };
+};
+```
+
 ## 4. File Manifest
 ```
 +-- src
