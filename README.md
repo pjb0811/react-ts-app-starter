@@ -14,9 +14,9 @@ You need to install [nodejs](https://nodejs.org/) for your OS environment.
 - **Redux**
   - react-redux
   - redux-actions
-  - redux-thunk
   - redux-logger
-  - redux-promise-middleware
+  - redux-thunk
+    - redux-promise-middleware
   - immutable
 - **MobX**
   - mobx-react
@@ -49,13 +49,13 @@ You need to install [nodejs](https://nodejs.org/) for your OS environment.
 ```
   npm run serve
 ```
-### Change the state management library(MobX <-> Redux)
+### Change the state management library(mobx <-> redux-thunk)
 #### src/client/Root.tsx
 ```
-// redux
+// redux-thunk
 ...
 import { Provider  } from 'react-redux';
-import store from '../redux/store';
+import store from '../redux-thunk/store';
 
 // mobx
 import { Provider } from 'mobx-react';
@@ -66,9 +66,9 @@ const store = new Store();
 ```
 #### src/server/render.tsx
 ```
-// redux
+// redux-thunk
 import { Provider } from 'react-redux';
-import store from '../redux/store';
+import store from '../redux-thunk/store';
 
 // mobx
 import { toJS } from 'mobx';
@@ -81,7 +81,7 @@ const render = async (location: string) => {
   ....
   return {
     html,
-    // redux
+    // redux-thunk
     state: store.getState(),
     // mobx
     state: toJS(store),
@@ -98,23 +98,24 @@ const render = async (location: string) => {
 |   +-- components
 |       +-- pages
 |       +-- Menu.tsx
-|   +-- redux
-|       +-- modules
+|   +-- redux-thunk
+|       +-- reducers
 |       +-- store.ts
 |   +-- server
 |       +-- render.tsx
 |   +-- App.tsx
 |   +-- index.tsx
 ```
-## 5. Copyright / End User License
+## Copyright / End User License
 MIT © [pjb0811](http://github.com/pjb0811)
 
-## 6. Contact Information
+## Contact Information
 - [pjb0811@gmail.com](mailto:pjb0811@gmail.com)
 - [http://github.com/pjb0811](http://github.com/pjb0811)
+
 <!--
-## 7. 알려진 버그 (Known Issues)
-## 8. 문제 발생에 대한 해결책 (Troubleshooting)
-## 9. 크레딧 (Credit)
-## 10. 업데이트 정보 (Change Log)
+## Known Issues
+## Troubleshooting
+## Credit
+## Change Log
 -->

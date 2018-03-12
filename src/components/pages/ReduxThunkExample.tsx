@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as counterActions from '../../redux/modules/counter';
-import * as postActions from '../../redux/modules/post';
+import * as counterActions from '../../redux-thunk/reducers/counter';
+import * as postActions from '../../redux-thunk/reducers/post';
 
 interface Props {
   PostActions: typeof postActions;
@@ -26,7 +26,7 @@ type Post = {
   toJS: Function;
 };
 
-class ReduxExample extends React.Component<Props> {
+class ReduxThunkExample extends React.Component<Props> {
   componentWillMount() {
     const { counter } = this.props;
     this.getPost(counter);
@@ -82,4 +82,4 @@ export default connect(
     CounterActions: bindActionCreators(counterActions, dispatch),
     PostActions: bindActionCreators(postActions, dispatch)
   })
-)(ReduxExample);
+)(ReduxThunkExample);

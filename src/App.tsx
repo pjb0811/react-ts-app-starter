@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 import {
-  Home, About, ReduxExample, MobxExample
+  Home, About, ReduxThunkExample, MobxExample
 } from './components/pages';
 import Menu from './components/Menu';
 import { Helmet } from 'react-helmet';
@@ -23,7 +23,7 @@ class App extends React.Component<Props> {
           <Menu/>
           <Route exact={true} path="/" component={Home}/>
           <Route path="/about" component={About}/>
-          <Route path="/reduxExample" component={ReduxExample}/>
+          <Route path="/reduxThunkExample" component={ReduxThunkExample}/>
           <Route path="/mobxExample" component={MobxExample}/>
         </div>
       </div>
