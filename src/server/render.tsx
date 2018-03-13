@@ -4,7 +4,7 @@ import { StaticRouter } from 'react-router';
 import App from '../App';
 import { Helmet } from 'react-helmet';
 
-// redux
+// redux-thunk
 import { Provider } from 'react-redux';
 import store from '../redux-thunk/store';
 

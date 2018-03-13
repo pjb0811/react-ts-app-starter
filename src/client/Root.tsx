@@ -2,9 +2,14 @@ import * as React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from '../App';
 
-// redux-thunk
+// redux-saga
 import { Provider  } from 'react-redux';
-import store from '../redux-thunk/store';
+import configureStore from '../redux-saga/store';
+const store = configureStore();
+
+// // redux-thunk
+// import { Provider  } from 'react-redux';
+// import store from '../redux-thunk/store';
 
 // // mobx
 // import { Provider } from 'mobx-react';
