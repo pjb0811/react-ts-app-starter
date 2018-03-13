@@ -4,9 +4,13 @@ import { StaticRouter } from 'react-router';
 import App from '../App';
 import { Helmet } from 'react-helmet';
 
-// redux-thunk
+// redux-saga
 import { Provider } from 'react-redux';
-import store from '../redux-thunk/store';
+import configureStore from '../redux-saga/store';
+
+// // redux-thunk
+// import { Provider } from 'react-redux';
+// import store from '../redux-thunk/store';
 
 // // mobx
 // import { toJS } from 'mobx';
@@ -16,6 +20,7 @@ import store from '../redux-thunk/store';
 const render = async (location: string) => {
   const helmet = Helmet.renderStatic();
   const context = {};
+  const store = configureStore(); // redux-saga
   // const store = new Store(); // mobx
 
   const html = await ReactDOMServer.renderToString(
@@ -28,7 +33,7 @@ const render = async (location: string) => {
 
   return {
     html,
-    state: store.getState(), // redux
+    state: store.getState(), // redux-thunk, redux-saga
     // state: toJS(store),  // mobx
     helmet,
   };
